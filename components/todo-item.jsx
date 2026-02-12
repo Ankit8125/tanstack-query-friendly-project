@@ -6,10 +6,25 @@ import { Calendar } from './ui/calendar'
 import { Button } from './ui/button'
 import { Trash2 } from 'lucide-react'
 import { cn } from '@/lib/utils'
+import { useToggleTodo } from '@/hooks/use-create-todo'
+import { toast } from 'sonner'
 
 const TodoItem = ({todo}) => {
   
   const [isDeleting, setIsDeleting] = useState(false)
+  const toggleMutation = useToggleTodo()
+
+  const handleToggle = async () => {
+    try {
+      const result = await toggleMutation.mutateAsync(todo._id)
+      if(!result.success){
+        toast.error("error ", result.error)
+      }
+    } catch (error) {
+      console.log("err", error)
+      toast.error("failed to update")
+    }
+  }
 
   const getPriorityColor = (priority) => {
     switch (priority) {
@@ -30,7 +45,7 @@ const TodoItem = ({todo}) => {
         <div className="flex items-start gap-3">
           <Checkbox
             checked={todo.completed}
-            onCheckedChange={()=>{}}
+            onCheckedChange={handleToggle}
             disabled={false}
             className="mt-1"
           />
@@ -52,7 +67,7 @@ const TodoItem = ({todo}) => {
             )}
 
             <div className="flex items-center gap-2 text-xs text-muted-foreground">
-              <Calendar className="w-3 h-3" />
+              {/* <Calendar className="w-3 h-3" /> */}
               <span>Created {new Date(todo.createdAt).toLocaleDateString()}</span>
             </div>
           </div>

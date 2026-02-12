@@ -44,3 +44,32 @@ export async function getTodos() {
     }
   }
 }
+
+export async function toggleTodo(id) {
+  try {
+    await connectDB()
+    const todo = await Todo.findById(id)
+    if(!todo){
+      return {
+        success: false,
+        error: "todo not found"
+      }
+    }
+
+    todo.completed = !todo.completed
+
+    await todo.save()
+
+    revalidatePath("/")
+    return {
+      success: true,
+      data: JSON.parse(JSON.stringify(todo))
+    }
+  } catch (error) {
+    console.log(error)
+    return {
+      success: false,
+      error: "failed to toggle todo"
+    }
+  }
+}
