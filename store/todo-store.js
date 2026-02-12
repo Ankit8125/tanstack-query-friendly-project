@@ -15,7 +15,23 @@ export const useTodoStore = create (
       })),
 
       setFilter: (filter) => set({ filter }),
-      setLoading: (isLoading) => set({ isLoading })
+      setLoading: (isLoading) => set({ isLoading }),
+
+      filteredTodos: () => {
+        const {todos, filter} = get()
+
+        switch(filter) {
+          case "active":
+            return todos.filter((todo) => !todo.completed)
+          case "completed":
+            return todos.filter((todo) => todo.completed)
+          default:
+            return todos
+        }
+      },
+
+      completedCount: () => get().todos.filter((todo) => todo.completed).length,
+      activeCount: () => get().todos.filter((todo) => !todo.completed).length,
     }),
     {
       name: "todo-store"
