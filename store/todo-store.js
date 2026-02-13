@@ -11,7 +11,7 @@ export const useTodoStore = create (
       setTodos: (todos) => set({todos}),
 
       addTodos: (todo) => set((state) => ({
-        todos: [todo, ...state.todo]
+        todos: [todo, ...state.todos]
       })),
 
       updateTodo: (id, updates) =>
