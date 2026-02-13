@@ -8,8 +8,6 @@ A production-style learning project that demonstrates how to build a full-stack 
 - MongoDB + Mongoose (persistence)
 - shadcn/ui + Tailwind (UI)
 
-This README is written as if you are explaining the project to a candidate in an interview.
-
 ## 1) What problem this project solves
 
 This app supports:
@@ -124,7 +122,7 @@ No manual refresh is needed because React Query updates subscribed components wh
 
 Result: fast UI update + correctness.
 
-## Delete TODO flow (the “why no refresh?” answer)
+## Delete TODO flow (the ï¿½why no refresh?ï¿½ answer)
 
 When user deletes:
 
@@ -139,7 +137,7 @@ That is why deletion appears live without refresh:
 - state update triggers immediate rerender
 - query invalidation ensures backend-consistent final state
 
-## 5) Why this feels “live”
+## 5) Why this feels ï¿½liveï¿½
 
 There are 3 mechanisms working together:
 
@@ -287,6 +285,3 @@ npm run dev
 - Add pagination/infinite query for large lists.
 - Add auth + per-user todos.
 - Add tests for hooks and server actions.
-
----
-If you explain this README confidently, you are covering both practical implementation and the core state-management concepts interviewers look for.
