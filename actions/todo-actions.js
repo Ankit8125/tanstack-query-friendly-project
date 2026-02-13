@@ -37,10 +37,10 @@ export async function getTodos() {
       data: JSON.parse(JSON.stringify(todos))
     }
   } catch (error) {
-    console.log("eror fetching todos");
+    console.log("error fetching todos", error);
     return{
       success: false,
-      data: "Failed to fetch todos"
+      error: "Failed to fetch todos"
     }
   }
 }

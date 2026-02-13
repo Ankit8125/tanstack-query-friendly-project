@@ -10,7 +10,7 @@ export const useTodoStore = create (
 
       setTodos: (todos) => set({todos}),
 
-      addTodos: (todo) => set((state) => ({
+      addTodo: (todo) => set((state) => ({
         todos: [todo, ...state.todos]
       })),
 

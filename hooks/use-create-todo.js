@@ -10,8 +10,6 @@ export const todoKeys = {
 export function useCreateTodo() {
   const queryClient = useQueryClient()
 
-  const addTodo = useTodoStore((state)=>state.addTodo)
-
   return useMutation({
     mutationFn:(data) => createTodo(data),
     onSuccess:(result) => {
@@ -38,7 +36,7 @@ export function useTodos() {
         return result.data
       }
 
-      throw new Error(result.Error)
+      throw new Error(result.error || "Failed to fetch todos")
     }
   })
 }
